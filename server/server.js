@@ -34,9 +34,10 @@ app.get("/getList", (req, res) => {
     res.send(results);
   });
 });
+let PORT = process.env.PORT || "3000";
 
-app.listen("3001", () => {
-  console.log("server started at port 3001");
+app.listen(PORT, () => {
+  console.log(`server started at port ${PORT}`);
 });
 
 app.post("/regUser", (req, res) => {
