@@ -297,6 +297,16 @@ app.post("/getList", (req, res) => {
           }
         );
       }
+
+      if (listType === "Favorites") {
+        pool.query(
+          "SELECT * FROM tbl_anilist WHERE user_id = ? AND ani_favorites = ?",
+          [userId, 1],
+          (err, results) => {
+            res.send(results);
+          }
+        );
+      }
     }
   );
 

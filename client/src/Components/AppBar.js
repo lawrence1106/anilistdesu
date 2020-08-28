@@ -20,6 +20,7 @@ import dashboardLogo from "../Images/dashboard.png";
 
 import AniList from "./AniList";
 import DroppedAnime from "./DroppedAnime";
+import AniDashboard from "./AniDashboard";
 
 const MySwal = withReactContent(Swal);
 
@@ -255,6 +256,9 @@ function Homepage() {
       </AppBar>
       <div className={classes.container}>
         <div>
+          <Route exact path="/">
+            <AniDashboard />
+          </Route>
           <Route path="/yourList">
             <title>Anilist Desu! - Your List</title>
             <AniList />
