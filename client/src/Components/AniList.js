@@ -11,12 +11,14 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
+  createMuiTheme,
+  ThemeProvider,
 } from "@material-ui/core";
 import MUIDatatable from "mui-datatables";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { Settings } from "@material-ui/icons";
+import { Settings, FavoriteBorder, Favorite } from "@material-ui/icons";
 import "../Fonts/Bangers-Regular.ttf";
 import closeLogo from "../Images/close.png";
 import Watched from "../Images/Watched.png";
@@ -27,7 +29,15 @@ import listIcon from "../Images/listIcon.png";
 import formLogo from "../Images/addAnime.png";
 import editLogo from "../Images/edit.png";
 import dropLogo from "../Images/drop.png";
+import { blue, yellow } from "@material-ui/core/colors";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "bottom-left",
+  showConfirmButton: false,
+  timer: 1500,
+});
+let favBtn = blue;
 const MySwal = withReactContent(Swal);
 
 const getListUrl = "http://localhost:3001/getList";
@@ -660,11 +670,69 @@ class AniList extends React.Component {
         },
       },
       {
+        name: "ani_favorites",
+        label: "Favorites",
+        options: {
+          customHeadLabelRender: () => {
+            return (
+              <Typography variant="h5" className={classes.font}>
+                Favorites
+              </Typography>
+            );
+          },
+          customBodyRender: (favStatus, meta) => {
+            const updFavorites = (aniId, favStatus) => {
+              Axios.post(getAnimeUrl, {
+                aniId: aniId,
+                action: "updFavorites",
+                user: this.state.sessionName,
+                favStatus: favStatus,
+              }).then((res) => {
+                if (res.data.results === true) {
+                  Toast.fire({
+                    icon: "success",
+                    title: "Favorites Updated!",
+                  });
+                  reloadTable();
+                } else {
+                  errorPrompt();
+                }
+              });
+            };
+
+            if (favStatus === 1) {
+              return (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => {
+                    updFavorites(meta.rowData[3], favStatus);
+                  }}
+                >
+                  <Favorite color="inherit" />
+                </Button>
+              );
+            } else {
+              return (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => {
+                    updFavorites(meta.rowData[3], favStatus);
+                  }}
+                >
+                  <FavoriteBorder color="inherit" />
+                </Button>
+              );
+            }
+          },
+        },
+      },
+      {
         name: "ani_id",
         label: "Actions",
         options: {
           customBodyRender: (value) => {
-            console.log();
             return (
               <Button
                 value={value}

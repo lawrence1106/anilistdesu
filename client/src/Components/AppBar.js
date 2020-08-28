@@ -16,6 +16,7 @@ import AniList from "./AniList";
 import droppedList from "../Images/droppedList.png";
 import yourListLogo from "../Images/yourListLogo.png";
 import DroppedAnime from "./DroppedAnime";
+import dashboardLogo from "../Images/dashboard.png";
 
 const MySwal = withReactContent(Swal);
 
@@ -108,6 +109,7 @@ function Homepage() {
       html: <div>{content}</div>,
       showCloseButton: true,
       showConfirmButton: false,
+      width: "40rem",
       closeButtonHtml:
         "<img alt='close logo' src=" + closeLogo + " style='height: 35px;' />",
     });
@@ -127,12 +129,29 @@ function Homepage() {
               alt="Your List Logo"
               onClick={() => {
                 history.push({ pathname: "/yourList" });
+                Swal.close();
               }}
             />
           </div>
+
           <div className={classes.itemsHolder}>
             <Typography variant="h4" className={classes.font}>
-              Dropped Anime
+              Dashboard
+            </Typography>
+            <img
+              className={classes.logoSize}
+              src={dashboardLogo}
+              alt="Your List Logo"
+              onClick={() => {
+                history.push({ pathname: "/" });
+                Swal.close();
+              }}
+            />
+          </div>
+
+          <div className={classes.itemsHolder}>
+            <Typography variant="h4" className={classes.font}>
+              Dropped
             </Typography>
             <img
               className={classes.logoSize}
@@ -140,6 +159,7 @@ function Homepage() {
               alt="Dropped Logo"
               onClick={() => {
                 history.push({ pathname: "/droppedAnime" });
+                Swal.close();
               }}
             />
           </div>
@@ -212,6 +232,7 @@ function Homepage() {
               onClick={() => {
                 navigation();
               }}
+              alt="Greeter Icon"
               className={classes.appbarIcons}
               src={add}
             />

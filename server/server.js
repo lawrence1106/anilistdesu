@@ -19,10 +19,6 @@ const pool = mysql.createConnection({
   queueLimit: 0,
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/index.html"));
-});
-
 app.get("/getName", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let sessionName = req.body.params;
@@ -34,7 +30,7 @@ app.get("/getList", (req, res) => {
     res.send(results);
   });
 });
-let PORT = process.env.PORT || "3000";
+let PORT = process.env.PORT || "3001";
 
 app.listen(PORT, () => {
   console.log(`server started at port ${PORT}`);
@@ -136,6 +132,36 @@ app.post("/getAnime", (req, res) => {
             });
           }
         );
+      }
+
+      if (action === "updFavorites") {
+        let favStatus = req.body.favStatus;
+        if (favStatus === 1) {
+          pool.query(
+            "UPDATE tbl_anilist SET ani_favorites = ? WHERE ani_id = ? AND user_id = ?",
+            [0, aniId, userId],
+            (err, results) => {
+              if (results.affectedRows === 1) {
+                res.send({ results: true });
+              } else {
+                res.send({ results: false });
+              }
+            }
+          );
+        }
+        if (favStatus === 0) {
+          pool.query(
+            "UPDATE tbl_anilist SET ani_favorites = ? WHERE ani_id = ? AND user_id = ?",
+            [1, aniId, userId],
+            (err, results) => {
+              if (results.affectedRows === 1) {
+                res.send({ results: true });
+              } else {
+                res.send({ results: false });
+              }
+            }
+          );
+        }
       }
 
       if (action === "Watched") {
