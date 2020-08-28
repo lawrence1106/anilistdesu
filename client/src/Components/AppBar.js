@@ -3,20 +3,23 @@ import { withRouter, useHistory, Route } from "react-router-dom";
 import Axios from "axios";
 import { AppBar, makeStyles, Typography } from "@material-ui/core";
 import { useCookies } from "react-cookie";
-import "../Fonts/Bangers-Regular.ttf";
-import add from "../Images/add.png";
-import options from "../Images/options.png";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+
+import "../Fonts/Bangers-Regular.ttf";
+
+import add from "../Images/add.png";
+import options from "../Images/options.png";
 import closeLogo from "../Images/close.png";
 import logoutLogo from "../Images/logout.png";
 import profileLogo from "../Images/profile.png";
 import byebyeLogo from "../Images/byebye.png";
-import AniList from "./AniList";
 import droppedList from "../Images/droppedList.png";
 import yourListLogo from "../Images/yourListLogo.png";
-import DroppedAnime from "./DroppedAnime";
 import dashboardLogo from "../Images/dashboard.png";
+
+import AniList from "./AniList";
+import DroppedAnime from "./DroppedAnime";
 
 const MySwal = withReactContent(Swal);
 
@@ -253,6 +256,7 @@ function Homepage() {
       <div className={classes.container}>
         <div>
           <Route path="/yourList">
+            <title>Anilist Desu! - Your List</title>
             <AniList />
           </Route>
           <Route path="/droppedAnime">

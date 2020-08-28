@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import {
@@ -11,8 +12,6 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
-  createMuiTheme,
-  ThemeProvider,
 } from "@material-ui/core";
 import MUIDatatable from "mui-datatables";
 import Axios from "axios";
@@ -29,7 +28,6 @@ import listIcon from "../Images/listIcon.png";
 import formLogo from "../Images/addAnime.png";
 import editLogo from "../Images/edit.png";
 import dropLogo from "../Images/drop.png";
-import { blue, yellow } from "@material-ui/core/colors";
 
 const Toast = Swal.mixin({
   toast: true,
@@ -37,7 +35,6 @@ const Toast = Swal.mixin({
   showConfirmButton: false,
   timer: 1500,
 });
-let favBtn = blue;
 const MySwal = withReactContent(Swal);
 
 const getListUrl = "http://localhost:3001/getList";
@@ -758,6 +755,9 @@ class AniList extends React.Component {
 
     return (
       <div>
+        <Helmet>
+          <title>Anilist Desu! - Your List</title>
+        </Helmet>
         <MUIDatatable
           title={[
             <div key="MUIDatatables">

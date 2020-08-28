@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import { useCookies } from "react-cookie";
@@ -21,6 +22,8 @@ import rightChar from "../Images/rightChar.png";
 import { green } from "@material-ui/core/colors";
 import "../Fonts/Bangers-Regular.ttf";
 
+const metaContent =
+  "Create your own personal custom anime list with convenient organizing features only here on Anilist Desu!";
 const MySwal = withReactContent(Swal);
 
 const useStyles = makeStyles((theme) => ({
@@ -165,7 +168,11 @@ export default function Login() {
         <div>
           <div className={classes.registrationHeader}>
             <div className={classes.formItems}>
-              <img className={classes.nezuko} src={nezuko} />
+              <img
+                alt="nezuko-chuwaaan!"
+                className={classes.nezuko}
+                src={nezuko}
+              />
             </div>
             <Typography className={classes.bangers} variant="h3">
               Register
@@ -261,6 +268,10 @@ export default function Login() {
   };
   return (
     <div>
+      <Helmet>
+        <title>Anilist Desu! - Youkoso!</title>
+        <meta name="description" content={metaContent}></meta>
+      </Helmet>
       <div className={classes.container}>
         <Card className={classes.cardContainer}>
           <div className={classes.cristinaContainer}>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import { Typography, Divider, withStyles, Button } from "@material-ui/core";
@@ -194,7 +195,7 @@ class DroppedAnime extends React.Component {
       });
     };
 
-    const setUnWatched = (aniId) => {
+    const redeemAnime = (aniId) => {
       Axios.post(getAnimeUrl, {
         aniId: aniId,
         action: "Unwatched",
@@ -242,8 +243,9 @@ class DroppedAnime extends React.Component {
                     Redeem
                   </Typography>
                   <img
+                    alt="redeemAnime Logo"
                     onClick={() => {
-                      setUnWatched(aniId);
+                      redeemAnime(aniId);
                     }}
                     src={redeemLogo}
                     className={classes.logoSize}
@@ -321,6 +323,9 @@ class DroppedAnime extends React.Component {
     ];
     return (
       <div>
+        <Helmet>
+          <title>Anilist Desu! - Dropped List</title>
+        </Helmet>
         <MUIDatatables
           title={[
             <div key="MUIDatatables">
