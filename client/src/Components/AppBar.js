@@ -26,7 +26,7 @@ const MySwal = withReactContent(Swal);
 
 const getCredentialsUrl = "http://localhost:3001/getCredentials";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   appBar: {
     height: "10vh",
   },
@@ -91,7 +91,7 @@ const useStyles = makeStyles({
     height: "20vh",
     cursor: "pointer",
   },
-});
+}));
 
 function Homepage() {
   const history = useHistory();
@@ -241,7 +241,7 @@ function Homepage() {
               src={add}
             />
             <Typography className={classes.font} variant="h4">
-              Okairi: {fullName}
+              Okairi: {fullName.split(" ")[0]}
             </Typography>
           </div>
           <div className={classes.right}>

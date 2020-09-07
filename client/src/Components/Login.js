@@ -28,6 +28,11 @@ const MySwal = withReactContent(Swal);
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
     height: "100vh",
     backgroundColor: "#0093E9",
     backgroundImage: "linear-gradient(225deg, #0093E9 0%, #80D0C7 100%)",
@@ -45,17 +50,27 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "60px",
   },
   cardContainer: {
-    position: "absolute",
-    top: "30%",
-    left: "15%",
-    zIndex: 2,
-    padding: "10px",
-    background: "rgb(206, 220, 242)",
-    display: "flex",
-    justifyContent: "center",
-    width: "400px",
-    boxShadow:
-      "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
+    [theme.breakpoints.down("sm")]: {
+      width: "300px",
+      background: "rgb(206, 220, 242)",
+      padding: "10px",
+      zIndex: 2,
+      boxShadow:
+        "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
+    },
+    [theme.breakpoints.up("sm")]: {
+      position: "absolute",
+      top: "30%",
+      left: "15%",
+      zIndex: 2,
+      padding: "10px",
+      background: "rgb(206, 220, 242)",
+      display: "flex",
+      justifyContent: "center",
+      width: "400px",
+      boxShadow:
+        "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
+    },
   },
   cardLogin: {
     margin: "10px",
@@ -95,6 +110,9 @@ const useStyles = makeStyles((theme) => ({
     autoFocus: "focus",
   },
   aChar: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
     height: "100vh",
     position: "absolute",
     right: 0,

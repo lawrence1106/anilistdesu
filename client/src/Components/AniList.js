@@ -44,6 +44,11 @@ const getAnimeUrl = "http://localhost:3001/getAnime";
 const updateAnimeUrl = "http://localhost:3001/updateAnime";
 
 const styles = (theme) => ({
+  actionsFont: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+    },
+  },
   titleDivider: {
     fontFamily: "Bangers",
     margin: "7.5px",
@@ -75,7 +80,6 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",
-    flexWrap: "wrap",
   },
   itemsHolder: {
     height: "100%",
@@ -95,6 +99,9 @@ const styles = (theme) => ({
     alignItems: "center",
   },
   yatoDesu: {
+    [theme.breakpoints.down("sm")]: {
+      height: "180px",
+    },
     zIndex: "-1",
     position: "absolute",
     height: "250px",
@@ -155,7 +162,7 @@ class AniList extends React.Component {
           <div className={classes.actionsContainer}>
             <div className={classes.itemsHolder}>
               <Typography variant="h4" className={classes.font}>
-                Anime
+                <div className={classes.actionsFont}>Anime</div>
               </Typography>
               <Typography className={classes.font}>Updated!</Typography>
               <img
@@ -434,7 +441,7 @@ class AniList extends React.Component {
                 className={classes.itemsHolder}
               >
                 <Typography variant="h4" className={classes.font}>
-                  Edit
+                  <div className={classes.actionsFont}>Edit</div>
                 </Typography>
                 <img
                   src={editLogo}
@@ -449,7 +456,7 @@ class AniList extends React.Component {
                 className={classes.itemsHolder}
               >
                 <Typography variant="h4" className={classes.font}>
-                  Drop
+                  <div className={classes.actionsFont}>Drop</div>
                 </Typography>
                 <img
                   src={dropLogo}
@@ -466,7 +473,7 @@ class AniList extends React.Component {
                 className={classes.itemsHolder}
               >
                 <Typography variant="h4" className={classes.font}>
-                  delete
+                  <div className={classes.actionsFont}>delete</div>
                 </Typography>
                 <img
                   src={deleteLogo}
@@ -476,7 +483,7 @@ class AniList extends React.Component {
               </div>
               <div className={classes.itemsHolder}>
                 <Typography variant="h4" className={classes.font}>
-                  Update Status
+                  <div className={classes.actionsFont}>Update Status</div>
                 </Typography>
                 <img
                   onClick={setWatched}
@@ -510,7 +517,7 @@ class AniList extends React.Component {
                 className={classes.itemsHolder}
               >
                 <Typography variant="h4" className={classes.font}>
-                  Edit
+                  <div className={classes.actionsFont}>Edit</div>
                 </Typography>
                 <img
                   src={editLogo}
@@ -525,7 +532,7 @@ class AniList extends React.Component {
                 className={classes.itemsHolder}
               >
                 <Typography variant="h4" className={classes.font}>
-                  Drop
+                  <div className={classes.actionsFont}>Drop</div>
                 </Typography>
                 <img
                   src={dropLogo}
@@ -542,7 +549,7 @@ class AniList extends React.Component {
                 className={classes.itemsHolder}
               >
                 <Typography variant="h4" className={classes.font}>
-                  delete
+                  <div className={classes.actionsFont}>delete</div>
                 </Typography>
                 <img
                   src={deleteLogo}
@@ -552,7 +559,7 @@ class AniList extends React.Component {
               </div>
               <div className={classes.itemsHolder}>
                 <Typography variant="h4" className={classes.font}>
-                  Update Status
+                  <div className={classes.actionsFont}>Update Status</div>
                 </Typography>
                 <img
                   src={Watched}

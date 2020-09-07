@@ -3,11 +3,15 @@ import Axios from "axios";
 import { Cookies, withCookies } from "react-cookie";
 import { instanceOf } from "prop-types";
 import { Helmet } from "react-helmet";
-import { Card, CardContent, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography, withStyles } from "@material-ui/core";
 import "../Fonts/Bangers-Regular.ttf";
 
 const getListUrl = "http://localhost:3001/getList";
-
+const styles = (theme) => ({
+  font: {
+    fontFamily: "Bangers",
+  },
+});
 class aniDashboard extends React.Component {
   state = {
     favorites: [],
@@ -33,17 +37,21 @@ class aniDashboard extends React.Component {
     });
   }
   render() {
-    console.log(this.state.favorites);
+    const { classes } = this.props;
     return (
       <div>
         <Helmet>
           <title>Anilist Desu! - Ani - Dashboard</title>
         </Helmet>
         <Card>
-          <CardContent></CardContent>
+          <CardContent>
+            <Typography variant="h2" className={classes.font}>
+              Coming Soon!
+            </Typography>
+          </CardContent>
         </Card>
       </div>
     );
   }
 }
-export default withCookies(aniDashboard);
+export default withStyles(styles)(withCookies(aniDashboard));
