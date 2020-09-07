@@ -25,17 +25,6 @@ app.get("/getName", (req, res) => {
   res.send(sessionName);
 });
 
-app.get("/getList", (req, res) => {
-  pool.query("SELECT * FROM tbl_anilist", (err, results) => {
-    res.send(results);
-  });
-});
-let PORT = process.env.PORT || "3001";
-
-app.listen(PORT, () => {
-  console.log(`server started at port ${PORT}`);
-});
-
 app.post("/regUser", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let password = req.body.password;
@@ -309,7 +298,10 @@ app.post("/getList", (req, res) => {
       }
     }
   );
+});
 
-  if (listType === "droppedList") {
-  }
+let PORT = process.env.PORT || "3001";
+
+app.listen(PORT, () => {
+  console.log(`server started at port ${PORT}`);
 });
