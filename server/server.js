@@ -1,6 +1,5 @@
 const express = require("express");
 const mysql = require("mysql2");
-const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
@@ -10,7 +9,14 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+let PORT = process.env.PORT || "3001";
+
 const pool = mysql.createConnection({
+  // host: "localhost",
+  // port: PORT,
+  // user: "id14713324_enzkun",
+  // password: "c598c_64E)eX0Rdx",
+  // database: "id14713324_anilistdesu",
   host: "localhost",
   user: "root",
   database: "ani_list",
@@ -19,10 +25,10 @@ const pool = mysql.createConnection({
   queueLimit: 0,
 });
 
-app.get("/getName", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  let sessionName = req.body.params;
-  res.send(sessionName);
+app.get("/", (req, res) => {
+  pool.query("SELECT * FROM tbl_anilist", (err, rows) => {
+    res.json(rows);
+  });
 });
 
 app.post("/regUser", (req, res) => {
@@ -299,8 +305,6 @@ app.post("/getList", (req, res) => {
     }
   );
 });
-
-let PORT = process.env.PORT || "3001";
 
 app.listen(PORT, () => {
   console.log(`server started at port ${PORT}`);
